@@ -36,6 +36,38 @@ print(data.columns)
 
 **Answer:** 
 
+Agency vs. Agency Name:
+
+- One is an abbrevation of the full name.
+- One can be removed to reduce repetitiveness.
+
+Incident Address vs. Street Name vs. Landmark:
+
+- Landmark and Street Name are identical.
+- Both of these values are contained in Incident Address so we only need one of the columns.
+
+Cross Street 1/2 vs. Intersection Street 1/2:
+
+- Repetitiveness within these columns.
+- Only one needs to be removed.
+
+Park Facility Name:
+
+- Unspecified so the inputs do not have much value.
+
+Park Borough:
+
+- Identical to Community Board and Borough.
+- Column is adding to the repetitiveness.
+
+Police Precincts vs. Police Precinct:
+
+- Identical values so one can be removed.
+
+Location:
+
+- Longitude and latitude are contained in the Location column so it can be removed as it is redundant.
+
 The first columns that I would clean would be 'Agency' and 'Agency Name.' One is an abbreviation of the full name. In this case, I would remove 'Agency Name' to keep it clean. There is also an 'Incident Address' and 'Street Name.' In this scenario, I would get rid of 'Street Name' as that value is contained in 'Incident Address.' There is also another column called 'Landmark' which has the same value as 'Street Name' so that can be removed with 'Street Name.' With streets, there is replication with 'Cross Street 1/2' and 'Intersection Street 1/2.' We can remove one of these sets of columns to reduce replication. 'Park Facility Name' can be removed as its never specified. 'Park Borough' can be removed because it is identical to 'Community Board' and 'Borough.' 'Police Precincts' and 'Police Precinct' are identical so one can be removed. Lastly, 'Longitude' and 'Latitude' can be removed as it is within the column 'Location.'
 
 Empty Columns:
