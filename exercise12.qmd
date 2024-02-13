@@ -37,7 +37,8 @@ print(data.columns)
 
 The first columns that I would clean would be 'Agency' and 'Agency Name.' One is an abbreviation of the full name. In this case, I would remove 'Agency Name' to keep it clean. There is also an 'Incident Address' and 'Street Name.' In this scenario, I would get rid of 'Street Name' as that value is contained in 'Incident Address.' There is also another column called 'Landmark' which has the same value as 'Street Name' so that can be removed with 'Street Name.' With streets, there is replication with 'Cross Street 1/2' and 'Intersection Street 1/2.' We can remove one of these sets of columns to reduce replication. 'Park Facility Name' can be removed as its never specified. 'Park Borough' can be removed because it is identical to 'Community Board' and 'Borough.' 'Police Precincts' and 'Police Precinct' are identical so one can be removed. Lastly, 'Longitude' and 'Latitude' can be removed as it is within the column 'Location.'
 
-Empty Columns
+Empty Columns:
+
 - Facility Type
 - Due Date
 - Vehicle Type
@@ -49,6 +50,7 @@ Empty Columns
 - Bridge Highway Segment
 
 Columns we can remove to clean data:
+
 - Agency Name
 - Street Name
 - Landmark
@@ -77,10 +79,13 @@ Columns we can remove to clean data:
 missing_zip = data['Zip Codes'].isnull()
 missing_borough = data['Borough'].isnull()
 missing_zip_borough_correlation = (missing_zip == missing_borough).all()
-geocode_available = not (data['Latitude'].isnull().any() or data['Longitude'].isnull().any())
+geocode_available = not (data['Latitude'].isnull().any() 
+                    or data['Longitude'].isnull().any())
 
 missing_zip_borough_correlation, geocode_available
 ```
+
+**Answer:** From the results, we see that zip codes and boroughs are not always missing together. Geocoding is also not available because there are some null values with no location.
 
    3. Export the cleaned data in both csv and feather format. 
    Comment on the file sizes.
@@ -114,3 +119,5 @@ feather_file_size = os.path.getsize(feather_file_path)
 
 csv_file_size, feather_file_size
 ```
+
+**Answer**: 
