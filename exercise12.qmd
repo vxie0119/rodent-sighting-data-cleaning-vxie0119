@@ -32,6 +32,7 @@ data = pd.read_csv("data/rodent_2022-2023.csv")
 
 ```{python}
 print(data.columns)
+print(len(data.columns))
 ```
 
 **Answer:** 
