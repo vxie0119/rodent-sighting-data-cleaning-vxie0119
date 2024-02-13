@@ -21,6 +21,7 @@ Some missing values could be filled based on other columns.
 ```{python}
 import numpy as np
 import pandas as pd
+import os
 pd.options.mode.chained_assignment = None
 
 data = pd.read_csv("data/rodent_2022-2023.csv")
@@ -113,7 +114,6 @@ cleaned_data['Closed Date'] = cleaned_data['Closed Date'].astype(str)
 cleaned_data.to_feather(feather_file_path)
 
 # Checking the file sizes
-import os
 csv_file_size = os.path.getsize(csv_file_path)
 feather_file_size = os.path.getsize(feather_file_path)
 
