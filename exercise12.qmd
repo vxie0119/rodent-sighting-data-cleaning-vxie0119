@@ -120,4 +120,4 @@ feather_file_size = os.path.getsize(feather_file_path)
 csv_file_size, feather_file_size
 ```
 
-**Answer**: 
+**Answer**: The size of the csv files come out to 42 million bytes. The size of the feather file comes out to roughly 16 million bytes. We see that feather formatting is significantly smaller.
