@@ -90,7 +90,7 @@ columns_to_remove = ['Agency Name', 'Street Name', 'Landmark',
                      'Intersection Street 1', 'Intersection Street 2',
                      'Park Facility Name', 'Park Borough', 'Police Precinct',
                      'Longitude', 'Latitude', 'Facility Type', 'Due Date',
-                     'Vehicle Type', 'Taxi Company Borough', 'Taxi Pickup Location',
+                     'Vehicle Type', 'Taxi Company Borough', 'Taxi Pick Up Location',
                      'Bridge Highway Name', 'Bridge Highway Direction', 'Road Ramp',
                      'Bridge Highway Segment']
 cleaned_data = data.drop(columns=columns_to_remove)
