@@ -74,7 +74,7 @@ Columns we can remove to clean data:
    are available, use reverse geocoding to fill the zip code.
 
 ```{python}
-missing_zip = data['Incident Zip'].isnull()
+missing_zip = data['Zip Codes'].isnull()
 missing_borough = data['Borough'].isnull()
 missing_zip_borough_correlation = (missing_zip == missing_borough).all()
 geocode_available = not (data['Latitude'].isnull().any() or data['Longitude'].isnull().any())
@@ -84,3 +84,33 @@ missing_zip_borough_correlation, geocode_available
 
    3. Export the cleaned data in both csv and feather format. 
    Comment on the file sizes.
+
+```{python}
+columns_to_remove = ['Agency Name', 'Street Name', 'Landmark',
+                     'Intersection Street 1', 'Intersection Street 2',
+                     'Park Facility Name', 'Park Borough', 'Police Precinct',
+                     'Longitude', 'Latitude', 'Facility Type', 'Due Date',
+                     'Vehicle Type', 'Taxi Company Borough', 'Taxi Pickup Location',
+                     'Bridge Highway Name', 'Bridge Highway Direction', 'Road Ramp',
+                     'Bridge Highway Segment']
+cleaned_data = data.drop(columns=columns_to_remove)
+
+# Exporting
+csv_file_path = 'data/cleaned_rodent_data.csv'
+feather_file_path = 'data/cleaned_rodent_data.feather'
+
+# CSV Export
+cleaned_data.to_csv(csv_file_path, index=False)
+
+# Feather Export (removing non-supported types like datetime)
+cleaned_data['Created Date'] = cleaned_data['Created Date'].astype(str)
+cleaned_data['Closed Date'] = cleaned_data['Closed Date'].astype(str)
+cleaned_data.to_feather(feather_file_path)
+
+# Checking the file sizes
+import os
+csv_file_size = os.path.getsize(csv_file_path)
+feather_file_size = os.path.getsize(feather_file_path)
+
+csv_file_size, feather_file_size
+```
