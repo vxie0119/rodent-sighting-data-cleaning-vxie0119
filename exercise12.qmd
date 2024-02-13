@@ -68,8 +68,6 @@ Location:
 
 - Longitude and latitude are contained in the Location column so it can be removed as it is redundant.
 
-The first columns that I would clean would be 'Agency' and 'Agency Name.' One is an abbreviation of the full name. In this case, I would remove 'Agency Name' to keep it clean. There is also an 'Incident Address' and 'Street Name.' In this scenario, I would get rid of 'Street Name' as that value is contained in 'Incident Address.' There is also another column called 'Landmark' which has the same value as 'Street Name' so that can be removed with 'Street Name.' With streets, there is replication with 'Cross Street 1/2' and 'Intersection Street 1/2.' We can remove one of these sets of columns to reduce replication. 'Park Facility Name' can be removed as its never specified. 'Park Borough' can be removed because it is identical to 'Community Board' and 'Borough.' 'Police Precincts' and 'Police Precinct' are identical so one can be removed. Lastly, 'Longitude' and 'Latitude' can be removed as it is within the column 'Location.'
-
 Empty Columns:
 
 - Facility Type
