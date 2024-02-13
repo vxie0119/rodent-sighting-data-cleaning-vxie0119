@@ -1,0 +1,86 @@
+---
+title: "Homework Assignment 4"
+author: "Vincent Xie"
+toc: true
+number-sections: true
+highlight-style: pygments
+format: 
+  pdf: 
+    geometry: 
+      - top=30mm
+      - left=20mm
+---
+
+# **NYC rodent sightings data cleaning** {.unnumbered}
+
+The data appears to need some cleaning before any further analysis.
+Some missing values could be filled based on other columns.
+
+**Data Initialization**
+
+```{python}
+import numpy as np
+import pandas as pd
+pd.options.mode.chained_assignment = None
+
+data = pd.read_csv("data/rodent_2022-2023.csv")
+```
+
+   1. Checking all 47 column names suggests that some columns 
+   might be redundant. Identify them and demonstrate the redundancy.
+
+```{python}
+print(data.columns)
+```
+
+**Answer:** 
+
+The first columns that I would clean would be 'Agency' and 'Agency Name.' One is an abbreviation of the full name. In this case, I would remove 'Agency Name' to keep it clean. There is also an 'Incident Address' and 'Street Name.' In this scenario, I would get rid of 'Street Name' as that value is contained in 'Incident Address.' There is also another column called 'Landmark' which has the same value as 'Street Name' so that can be removed with 'Street Name.' With streets, there is replication with 'Cross Street 1/2' and 'Intersection Street 1/2.' We can remove one of these sets of columns to reduce replication. 'Park Facility Name' can be removed as its never specified. 'Park Borough' can be removed because it is identical to 'Community Board' and 'Borough.' 'Police Precincts' and 'Police Precinct' are identical so one can be removed. Lastly, 'Longitude' and 'Latitude' can be removed as it is within the column 'Location.'
+
+Empty Columns
+- Facility Type
+- Due Date
+- Vehicle Type
+- Taxi Company Borough
+- Taxi Pick Up Location
+- Bridge Highway Name
+- Bridge Highway Direction
+- Road Ramp
+- Bridge Highway Segment
+
+Columns we can remove to clean data:
+- Agency Name
+- Street Name
+- Landmark
+- Intersection Street 1
+- Intersection Street 2
+- Park Facility Name
+- Park Borough
+- Police Precinct
+- Longitude
+- Latitude
+- Facility Type
+- Due Date
+- Vehicle Type
+- Taxi Company Borough
+- Taxi Pick Up Location
+- Bridge Highway Name
+- Bridge Highway Direction
+- Road Ramp
+- Bridge Highway Segment
+
+
+   2. Are zip code and borough always missing together? If geocodes
+   are available, use reverse geocoding to fill the zip code.
+
+```{python}
+missing_zip = data['Incident Zip'].isnull()
+missing_borough = data['Borough'].isnull()
+missing_zip_borough_correlation = (missing_zip == missing_borough).all()
+geocode_available = not (data['Latitude'].isnull().any() or data['Longitude'].isnull().any())
+
+missing_zip_borough_correlation, geocode_available
+```
+
+   3. Export the cleaned data in both csv and feather format. 
+   Comment on the file sizes.
